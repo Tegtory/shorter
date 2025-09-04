@@ -1,0 +1,9 @@
+from typing import Protocol
+
+from shorter.domain import Link
+
+
+class ILinkRepo(Protocol):
+    async def create(self, link: Link) -> Link: ...
+    async def get(self, uid: str) -> Link | None: ...
+    async def get_last(self) -> Link | None: ...
