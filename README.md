@@ -4,25 +4,34 @@ link shorter - a little project that can help in a various situations and attemp
 
 ## ENV
 
-| ENV NAME   | REQUIRED | DESC                                                 |
-|------------|----------|------------------------------------------------------|
-| HOST       | +        | Host of site to gen links                            |
-| PORT       | +        | PORT IF IT NOT 80                                    |
-| BOT_TOKEN  | -        | BOT_TOKEN FOR AIOGRAM IF NOT PROVIDED BOT DONT START |
-| BLACK_LIST | -        | WIP                                                  |
+| ENV NAME   | REQUIRED | DESC                                                          |
+|-------------|----------|--------------------------------------------------------------|
+| HOST        | +        | Host of site to gen links                                    |
+| PORT        | +        | PORT of fastapi (def: 9123)  (required for compose)          |
+| BOT_TOKEN   | -        | BOT_TOKEN FOR AIOGRAM IF NOT PROVIDED BOT DONT START         |
+| BLACK_LIST  | -        | WIP                                                          |
+| DB_HOST     | -        | host of database (def: db_shorter_app)                       |
+| DB_PORT     | -        | port of database (def: 5432)                                 |
+| DB_NAME     | -        | name of database (def: shorter)                              |
+| DB_USER     | -        | name of user with access to database (def: user_shorter)     |
+| DB_PASSWORD | -        | password of user with access to database (def: blank string) |
 
 ## Run
 
 ```bash
-$ python main.py
+$ pip install uv
+$ uv sync
+$ python -m shorter
 ```
 
 ## TODO
 
 - [ ] add tests
-- [ ] integrate ci/cd
-- [ ] add real database
+- [X] integrate ci/cd
+- [x] add real database
+- [ ] add migrations
 - [ ] add inline_query to bot
+- [ ] blacklist
 - [X] DEBUG server
 
 ## Architeture
@@ -31,52 +40,22 @@ $ python main.py
 link_shorter
 │
 ├───common
-│       config.py
-│       exceptions.py
-│       __init__.py
 │
 ├───domain
 │   │   link.py
-│   │   __init__.py
 │   │
 │   ├───interfaces
-│   │       link.py
-│   │       __init__.py
 │   │
 │   └───use_cases
-│           link.py
-│           __init__.py
 │
 ├───infrastructure
 │   │   di.py
-│   │   __init__.py
 │   │
 │   └───repositories
-│           link.py
-│           __init__.py
 │
 ├───presentors
-│   │   __init__.py
-│   │
 │   ├───aiogram
-│   │       handlers.py
-│   │       main.py
-│   │       messages.py
-│   │       __init__.py
-│   │
-│   ├───cli
-│   │       decorator.py
-│   │       handle.py
-│   │       main.py
-│   │       __init__.py
-│   │
 │   └───fastapi
-│           handlers.py
-│           main.py
-│           __init__.py
 └───tests
-        test_link.py
-        __init__.py
-
 
 ```

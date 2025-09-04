@@ -6,6 +6,8 @@ RUN pip install --upgrade pip && pip install uv
 
 COPY . .
 
+RUN uv sync --no-dev
+
 EXPOSE 9123
 
-CMD ["python", "main.py"]
+CMD ["python", "-m", "shorter"]

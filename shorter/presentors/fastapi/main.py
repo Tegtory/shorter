@@ -18,7 +18,7 @@ async def main() -> None:
     app.include_router(router)
     setup_dishka(container, app)
     host = "0.0.0.0" if not config.DEBUG else "127.0.0.1"
-    server_config = uvicorn.Config(app, host=host, port=9123)
+    server_config = uvicorn.Config(app, host=host, port=config.PORT)
     server = uvicorn.Server(server_config)
-    logger.info("FastAPI serving %s:%s", host, 9123)
+    logger.info("FastAPI serving %s:%s", host, config.PORT)
     await server.serve()

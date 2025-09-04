@@ -9,6 +9,7 @@ dependencies = [
     "alembic>=1.16.5",
     "dishka>=1.6.0",
     "fastapi>=0.116.1",
+    "pydantic>=2.11.7",
     "pydantic-settings>=2.10.1",
     "sqlalchemy>=2.0.43",
     "uvicorn>=0.35.0",
@@ -17,6 +18,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "coverage>=7.10.5",
+    "httpx>=0.28.1",
     "mypy>=1.17.1",
     "pre-commit>=4.3.0",
     "pytest-asyncio>=1.1.0",
@@ -26,7 +28,7 @@ dev = [
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
-python_version = 3.12
+python_version = "3.12"
 check_untyped_defs = true
 disallow_untyped_defs = true
 disallow_incomplete_defs = true
@@ -128,13 +130,8 @@ docstring-code-line-length = "dynamic"
 
 [tool.coverage.run]
 branch = true
-omit = [
-    "tests/*",
-]
+omit = ["tests/*"]
 
 
 [tool.coverage.report]
-exclude_also = [
-    "raise AssertionError",
-    "raise NotImplementedError",
-]
+exclude_also = ["raise AssertionError", "raise NotImplementedError"]

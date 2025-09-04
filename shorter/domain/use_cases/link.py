@@ -28,10 +28,22 @@ class UCLink:
 
     @staticmethod
     async def _generate_uid(last_uid: str) -> str:
-        parsed_int = int(
-            "".join([str(config.DIGITS.index(i)) for i in last_uid])
-        )
-        return "".join(config.DIGITS[int(i)] for i in str(parsed_int + 1))
+        base = len(config.DIGITS)
+        num = 0
+        for char in last_uid:
+            num = num * base + config.DIGITS.index(char)
+
+        num += 1
+
+        if num == 0:
+            return config.DIGITS[0]
+
+        new_uid = []
+        while num > 0:
+            num, remainder = divmod(num, base)
+            new_uid.append(config.DIGITS[remainder])
+
+        return "".join(reversed(new_uid))
 
     async def check_blacklist(self, url: str) -> None:
         for black_url in config.BLACK_LIST:

@@ -23,7 +23,7 @@ async def create_url(link: Link, use_case: FromDishka[UCLink]) -> dict:
 @router.get("/{uid}")
 @inject
 async def get_url(uid: str, use_case: FromDishka[UCLink]) -> HTMLResponse:
-    url = use_case.get(uid)
+    url = await use_case.get(uid)
     return HTMLResponse(
         f'<script>window.location.href="{url}"</script>', status_code=302
     )

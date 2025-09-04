@@ -2,8 +2,9 @@ import logging
 
 from aiogram import Bot, Dispatcher
 from dishka.integrations.aiogram import setup_dishka
-from infrastructure.di import container
-from presentors.aiogram.handlers import router
+
+from shorter.infrastructure.di import container
+from shorter.presentors.aiogram.handlers import router
 
 logger = logging.getLogger(__name__)
 
